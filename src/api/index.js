@@ -93,8 +93,8 @@ export const getForumView = params => {
     }).catch((error) => {
         reject(error)
     });
-};
-//查询博客帖子
+}
+//查询博客
 export const getBlogThread = params => {
     return axios.get(`/api/admin/blogThreads/read?fid=&current=1`, { params: params }).then(res => {
         return res.data;
@@ -104,7 +104,14 @@ export const getBlogThread = params => {
         reject(error)
     });
 }
-
+// 添加博客
+export function saveBlogPost(data) {
+  return request({
+      url: `${base}/blogpost/saveBlogPost`,
+      method: 'post',
+      data
+  })
+}
 // 查询博客详情
 export const getBlogView = params => {
     // tid
@@ -134,6 +141,13 @@ export const findAppForumPostList = params => {
     return axios.post(`${base}/forumpost/findAppForumPostList`, params).then(res => {
         return res.data
     })
+}
+
+// 新增问答
+export const addForumPost = params => {
+  return axios.post(`${base}/forumpost/addForumPost`, params).then(res => {
+      return res.data
+  })
 }
 
 // 查询话题

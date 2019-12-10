@@ -46,7 +46,7 @@
 
 <script>
 import { Indicator } from 'mint-ui'
-import { saveTopic, findTechTypeList } from '@/api'
+import { saveBlogPost, findTechTypeList } from '@/api'
 
 export default {
     data() {
@@ -54,9 +54,9 @@ export default {
         isAjax: false,
         bottomPopupVisible: false,
         formData: {
-          topicTitle: '',
-          topicContent: '',
-          typeId: '',
+          subject: '',
+          message: '',
+          fid: '',
           typeName: ''
         },
         slots: [
@@ -84,7 +84,7 @@ export default {
       changeType(picker, values) {
         if (values[0] != undefined) {
           this.formData.typeName = values[0].name
-          this.formData.typeId = values[0].value
+          this.formData.fid = values[0].value
           this.bottomPopupVisible = false
         }
       },
@@ -94,7 +94,7 @@ export default {
       back() {
         this.$router.push({path: '/'})
       },
-      saveTopic() {
+      saveBlogPost() {
         if (this.isAjax) {
           return
         }

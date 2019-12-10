@@ -2,7 +2,7 @@ import * as types from '../types'
 import { getToken } from '@/common/js/utils'
 
 const state = {
-    loginFlag: !!getToken(),
+    loginFlag: getToken(),
     // 用户登录状态
     loginStatus: JSON.parse(sessionStorage.getItem('loginStatus')) || false,
     // 用户登录信息

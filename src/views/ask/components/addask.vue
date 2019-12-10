@@ -6,7 +6,7 @@
       </router-link>
       <!-- <mt-button icon="more" slot="right" @click="bottomPopupVisible=true"></mt-button> -->
     </mt-header>
-    <mt-field label="标题" placeholder="（必填）" v-model="formData.username"></mt-field>
+    <mt-field label="标题" placeholder="（必填）" v-model="formData.subject"></mt-field>
     <mt-field label="分类" placeholder="请选择" type="email" v-model="formData.typeName" readonly @click.native="bottomPopupVisible=true"></mt-field>
     <div class="title">
       <span class="title">内容</span>
@@ -15,7 +15,7 @@
       placeholder="文章"
       type="textarea"
       rows="4"
-      v-model="formData.typeId"
+      v-model="formData.message"
     ></mt-field>
 
     <div class="ebox imagebox" style="display:block;">
@@ -46,7 +46,7 @@
 
 <script>
 import { Indicator } from 'mint-ui'
-import { saveTopic, findTechTypeList } from '@/api'
+import { addForumPost, findTechTypeList } from '@/api'
 
 export default {
     data() {
@@ -54,9 +54,9 @@ export default {
         isAjax: false,
         bottomPopupVisible: false,
         formData: {
-          topicTitle: '',
-          topicContent: '',
-          typeId: '',
+          subject: '',
+          message: '',
+          fid: '',
           typeName: ''
         },
         slots: [
@@ -82,10 +82,9 @@ export default {
         })
       },
       changeType(picker, values) {
-        console.log('aaaaaaaaaaaaaaaa', values)
         if (values[0] != undefined) {
           this.formData.typeName = values[0].name
-          this.formData.typeId = values[0].value
+          this.formData.fid = values[0].value
           this.bottomPopupVisible = false
         }
       },
@@ -95,12 +94,12 @@ export default {
       back() {
         this.$router.push({path: '/'})
       },
-      saveTopic() {
+      addForumPost() {
         if (this.isAjax) {
           return
         }
         this.isAjax = false
-        saveTopic(this.formData).then(res => {
+        addForumPost(this.formData).then(res => {
           this.isAjax = false
         }).catch(() => {
           this.isAjax = false
