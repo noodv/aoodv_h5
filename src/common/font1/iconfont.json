@@ -1,0 +1,30 @@
+{
+  "id": "1550017",
+  "name": "aoodv_h5",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "1200184",
+      "name": "图片",
+      "font_class": "tupian",
+      "unicode": "e608",
+      "unicode_decimal": 58888
+    },
+    {
+      "icon_id": "1242678",
+      "name": "菜单",
+      "font_class": "ego-caidan",
+      "unicode": "e62f",
+      "unicode_decimal": 58927
+    },
+    {
+      "icon_id": "1631392",
+      "name": "编辑",
+      "font_class": "tableedit",
+      "unicode": "e61b",
+      "unicode_decimal": 58907
+    }
+  ]
+}
