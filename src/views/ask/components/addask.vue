@@ -37,7 +37,7 @@
       </ul>
     </div>
 
-    <mt-button style="width: 100%; margin: 10px auto;" type="primary">发布</mt-button>
+    <mt-button style="width: 100%; margin: 10px auto;" type="primary" @click="addForumPost">发布</mt-button>
     <mt-popup class="sharePopup" v-model="bottomPopupVisible" position="bottom" popup-transition="popup-fade" >
       <mt-picker style="height: 100%;" :slots="slots" valueKey="name" @change="changeType"></mt-picker>
     </mt-popup>

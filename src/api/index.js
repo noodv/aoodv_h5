@@ -144,9 +144,11 @@ export const findAppForumPostList = params => {
 }
 
 // 新增问答
-export const addForumPost = params => {
-  return axios.post(`${base}/forumpost/addForumPost`, params).then(res => {
-      return res.data
+export function addForumPost(data) {
+  return request({
+    url: `${base}/forumpost/addForumPost`,
+    method: 'post',
+    data
   })
 }
 

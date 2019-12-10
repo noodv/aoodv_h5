@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { Toast } from 'mint-ui'
-import { _getCookie } from '@/common/js/utils'
+import { getToken } from '@/common/js/utils'
 
 // create an axios instance
 const service = axios.create({
@@ -12,9 +12,9 @@ const service = axios.create({
 service.interceptors.request.use (
   config => {
     // 设置请求头
-    if (_getCookie('token')) {
+    if (getToken()) {
       // 让每个请求携带token
-      config.headers['Authorization'] = _getCookie('token')
+      config.headers['Authorization'] = getToken()
     }
 
     // 对全局参数做过滤，把不存在的参数删除
