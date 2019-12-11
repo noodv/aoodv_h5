@@ -50,7 +50,7 @@ export default {
         bottomPopupVisible: false,
         formData: {
           topicTitle: '',
-          topicContent: '<h2>aaaaaaaaaa</h2>',
+          topicContent: '',
           typeId: '',
           typeName: ''
         },
@@ -150,7 +150,7 @@ body, ul, ol, li, dl, dd, p, h1, h2, h3, h4, h5, h6, form, fieldset, .pr, .pc {
   left: 3%;
 }
 .content {
-  width: 100%;
+  width: 97%;
   height: 200px;
   padding: 5px 5px;
   font-size: 15px;
