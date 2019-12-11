@@ -11,7 +11,7 @@
     <div class="title">
       <span class="title">内容</span>
     </div>
-    <div ref="content" placeholder='请输入' class="content" contentEditable='true' v-html="formData.topicContent">
+    <div ref="content" placeholder='请输入' class="content edit" contentEditable='true' v-html="formData.topicContent">
     </div>
     <div class="ebox imagebox" style="display:block;">
       <ul id="imglist2" class="bg-f  p5">
@@ -41,7 +41,7 @@
 
 <script>
 import { Indicator } from 'mint-ui'
-import { saveTopic, findTechTypeList, uploadImg } from '@/api'
+import { saveTopic, findTechTypeList, getBaseUrl } from '@/api'
 
 export default {
     data() {
@@ -91,8 +91,23 @@ export default {
             alert('请选择5M以内的图片！')
             return false
           }
-          var imgurl = uploadImg('/blogpost/UploadFile' ,this.fil[i])
-          this.$refs.content.innerHTML = this.$refs.content.innerHTML + `<img src="${imgurl}">`
+          this.uploadImg('/blogpost/UploadFile' ,this.fil[i])
+        }
+      },
+      uploadImg(url, file) {
+        var _this = this
+        var fromData = new FormData()
+        fromData.append("file", file)
+        var oAjax = new XMLHttpRequest()
+        oAjax.open('post', `${getBaseUrl() + url}`, true)
+        oAjax.send(fromData);
+        oAjax.onreadystatechange = function() {
+          if (oAjax.readyState == 4) {
+            let { code, obj } = JSON.parse(oAjax.response)
+            if (code == 200 && oAjax.status >= 200 && oAjax.status < 300 || oAjax.status == 304) {
+              _this.$refs.content.innerHTML = _this.$refs.content.innerHTML + `<p><img style='width: 100%;height: 200px;' src="${obj}" /></p>&nbsp;`
+            }
+          }
         }
       },
       changeType(picker, values) {
@@ -149,7 +164,7 @@ body, ul, ol, li, dl, dd, p, h1, h2, h3, h4, h5, h6, form, fieldset, .pr, .pc {
 }
 .content {
   width: 97%;
-  height: 200px;
+  min-height: 200px;
   padding: 5px 5px;
   font-size: 15px;
 }
@@ -186,5 +201,10 @@ ul, .itemlist {
 }
 .webuploader-element-invisible {
     display: none;
+}
+.edit,  
+.edit * {  
+    -webkit-user-select: auto;  
+    -webkit-user-modify: read-write;  
 }
 </style>

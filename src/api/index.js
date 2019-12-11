@@ -5,6 +5,10 @@ import {} from '@/common/js/utils'
 // let base = 'http://47.75.158.224/api'  // 因为要经过nginx转发，所以添加api
 let base = 'http://localhost:8081/bbs'
 
+export function getBaseUrl() {
+  return `${base}`
+}
+
 export function requestLogin(data) {
     return request({
         url: `${base}/auth/login`,
@@ -191,22 +195,4 @@ export function sendVerfyCode(data) {
     method: 'post',
     data
   })
-}
-
-// 如果选有多个文件，则该方法会被调用多次
-export function uploadImg(url, file) {
-  var fromData = new FormData()
-  fromData.append("file", file)
-  var oAjax = new XMLHttpRequest()
-  oAjax.open('post', `${base}` + url, false);
-  oAjax.send(fromData);
-  oAjax.onreadystatechange = function() {
-    if (oAjax.readyState == 4) {
-      if (oAjax.status >= 200 && oAjax.status < 300 || oAjax.status == 304) {
-        console.log('upload img address : ', JSON.parse(oAjax.response).obj)
-        return JSON.parse(oAjax.response).obj
-      }
-    }
-  }
-  return false
 }
