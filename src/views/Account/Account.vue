@@ -1,7 +1,7 @@
 <template>
   <div class="wrapper">
     <div class="user">
-      <div v-if="user.name">
+      <div v-if="loginFlag">
         <img :src="user.src" alt="" class="avatar"/>
         <div class="description">
           <p class="title">{{user.name}}</p>
@@ -90,8 +90,16 @@
 </template>
 
 <script>
-import {mapGetters} from 'vuex'
+import { mapGetters, mapState } from 'vuex'
 export default {
+  computed:{
+    ...mapGetters({       
+      user: 'getUserData'
+    }),
+    ...mapState({
+      loginFlag: state => state.user.loginFlag
+    })
+  },
   data(){
     return{
       // user: {
@@ -112,14 +120,9 @@ export default {
         this.$router.push('/account/login');
       }
     },
-    changeToLogin(){            //跳转到登录界面
-      this.$router.push('/account/login');
+    changeToLogin() {            //跳转到登录界面
+      this.$router.push('/account/login')
     }
-  },
-  computed:{
-    ...mapGetters({       
-      user: 'getUserData'
-    })
   }
 }
 </script>

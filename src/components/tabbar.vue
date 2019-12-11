@@ -113,7 +113,6 @@ export default {
         this.mycolor = iconColor
       },
       showCard() {
-        console.log('aaaaaaaaaaaaaaaaa', this.loginFlag)
         if (!this.loginFlag) {
           // 如果用户没有登录，则跳转登录页面
           this.$router.push({path:'/account/login'})
