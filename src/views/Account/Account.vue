@@ -8,7 +8,7 @@
           <span class="ways">{{user.ways}}</span>
         </div>
       </div>
-      <div class="login" v-if="!user.name">
+      <div v-else class="login">
         <div class="wrap">
           <div class="button" @click="changeToLogin">登录</div>
         </div>
