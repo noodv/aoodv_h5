@@ -25,12 +25,13 @@
             <a><i class="iconfont icon-tupian bigs"></i></a>
           </div>
           <div id="rt_rt_1drl85l4lp181ejl14rd1fcvpc91" style="position: absolute; top: 0px; left: 0px; width: 50px; height: 44px; overflow: hidden; bottom: auto; right: auto;">
-            <input ref="upload" type="file" name="file" class="webuploader-element-invisible" multiple="multiple" accept="image/*,text/plain,application/msword,application/octet-stream,application/vnd.ms-excel,application/x-shockwave-flash">
+            <input ref="upload" @change="addImg" type="file" name="file" class="webuploader-element-invisible" multiple="multiple" accept="image/*,text/plain,application/msword,application/octet-stream,application/vnd.ms-excel,application/x-shockwave-flash">
             <label style="opacity: 0; width: 100%; height: 100%; display: block; cursor: pointer; background: rgb(255, 255, 255);" @click="onUpload"></label>
           </div>
         </li>
         <li v-else v-for="(item, i) in 5" :key="i" class="webuploader-container">
           <div class="webuploader-pick">
+            <a><i class="iconfont icon-tupian bigs"></i></a>
             <a><i class="iconfont icon-tupian bigs"></i></a>
           </div>
         </li>
@@ -80,6 +81,26 @@ export default {
             this.slots[0].values.push({name: item.name, value: item.fid})
           })
         })
+      },
+      addImg(event){
+        let inputDOM = this.$refs.inputer;
+        // 通过DOM取文件数据
+        this.fil = inputDOM.files;
+        let oldLen=this.imgLen;
+        let len=this.fil.length+oldLen;
+        if(len>4){
+          alert('最多可上传4张，您还可以上传'+(4-oldLen)+'张');
+          return false;
+        }
+        for (let i=0; i < this.fil.length; i++) {
+          let size = Math.floor(this.fil[i].size / 1024);
+          if (size > 5*1024*1024) {
+            alert('请选择5M以内的图片！');
+            return false
+          }
+          this.imgLen++;
+          this.$set(this.imgs,this.fil[i].name+'?'+new Date().getTime()+i,this.fil[i]);
+        }
       },
       changeType(picker, values) {
         if (values[0] != undefined) {
