@@ -11,13 +11,9 @@
     <div class="title">
       <span class="title">内容</span>
     </div>
-    <mt-field
-      placeholder="文章"
-      type="textarea"
-      rows="4"
-      v-model="formData.topicContent"
-    ></mt-field>
-
+    <div :v-model="formData.topicContent" placeholder='请输入' class="" style="width: 200px;height: 200px;" contentEditable='true'>
+      <h1>aaaaaaaaaaa</h1>
+    </div>
     <div class="ebox imagebox" style="display:block;">
       <ul id="imglist2" class="bg-f  p5">
         <li v-if="true" class="webuploader-container">
@@ -81,10 +77,10 @@ export default {
           })
         })
       },
-      addImg(event){
-        let inputDOM = this.$refs.inputer;
+      addImg(event) {
+        let inputDOM = this.$refs.upload;
         // 通过DOM取文件数据
-        this.fil = inputDOM.files;
+        this.fil = inputDOM.files
         let oldLen=this.imgLen;
         let len=this.fil.length+oldLen;
         if(len>4){
@@ -97,8 +93,9 @@ export default {
             alert('请选择5M以内的图片！');
             return false
           }
-          this.imgLen++;
-          this.$set(this.imgs,this.fil[i].name+'?'+new Date().getTime()+i,this.fil[i]);
+          this.imgLen++
+          console.log('aaaaaaaaaaaaaaaaaaaaaaaaaa', this.fil[i])
+          // this.$set(this.imgs,this.fil[i].name+'?'+new Date().getTime()+i,this.fil[i]);
         }
       },
       changeType(picker, values) {
