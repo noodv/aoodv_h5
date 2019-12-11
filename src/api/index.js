@@ -176,3 +176,10 @@ export function findTechTypeList(data) {
         data
     })
 }
+
+// 获取验证码
+export function getVerify() {
+  // eslint-disable-next-line prefer-const
+  let newDate = new Date().getTime()
+  return process.env.VUE_APP_BASE_API + '/common/verifyCode?romdonCode=' + newDate
+}
