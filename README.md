@@ -1,9 +1,8 @@
+># 源码地址：[Github](https://github.com/fishman17/vue-wyclass) 欢迎star哦
+
 # Vue-wyclass 仿网易云课堂App
 
-
 >### 在线预览：[手机浏览或切换谷歌浏览器移动调试](http://120.79.232.154:8080/#/home)
-
-
 
 >### Gif预览
 
@@ -195,7 +194,5 @@ npm run build
 # build for production and view the bundle analyzer report
 npm run build --report
 ```
-
-># 源码地址：[Github](https://github.com/fishman17/vue-wyclass) 欢迎star哦
 
 
