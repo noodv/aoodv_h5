@@ -32,7 +32,6 @@
         <li v-else v-for="(item, i) in 5" :key="i" class="webuploader-container">
           <div class="webuploader-pick">
             <a><i class="iconfont icon-tupian bigs"></i></a>
-            <a><i class="iconfont icon-tupian bigs"></i></a>
           </div>
         </li>
       </ul>
