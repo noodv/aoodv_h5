@@ -11,8 +11,7 @@
     <div class="title">
       <span class="title">内容</span>
     </div>
-    <div :v-model="formData.topicContent" placeholder='请输入' class="" style="width: 200px;height: 200px;" contentEditable='true'>
-      <h1>aaaaaaaaaaa</h1>
+    <div :v-model="formData.topicContent" placeholder='请输入' class="" style="width: 100%;height: 200px;" contentEditable='true'>
     </div>
     <div class="ebox imagebox" style="display:block;">
       <ul id="imglist2" class="bg-f  p5">
@@ -135,16 +134,16 @@ body, ul, ol, li, dl, dd, p, h1, h2, h3, h4, h5, h6, form, fieldset, .pr, .pc {
     margin: 0;
     padding: 0;
 }
-.title {
-  height: 1.2rem;
-  background-color: #f7f9fc;
-  line-height: 1.2rem;
-}
 .back {
   font-size: 0.8rem;
   margin-left: 0.3rem;
 }
 .title {
+  height: 1.2rem;
+  background-color: #f7f9fc;
+  line-height: 1.2rem;
+}
+.title .title {
   font-size: 0.43rem;
   position: absolute;
   left: 3%;
