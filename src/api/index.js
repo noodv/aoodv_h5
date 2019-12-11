@@ -183,3 +183,12 @@ export function getVerify() {
   let newDate = new Date().getTime()
   return process.env.VUE_APP_BASE_API + '/common/verifyCode?romdonCode=' + newDate
 }
+
+// 获取短信验证码
+export function sendVerfyCode(data) {
+  return request({
+    url: `${base}/user/sendVerfyCode`,
+    method: 'post',
+    data
+  })
+}

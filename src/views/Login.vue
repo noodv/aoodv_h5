@@ -12,7 +12,7 @@
           </div>
           <div class="verfycode">
               <input v-model="formData.verfyCode" type="text" style="width: 4.8rem;" placeholder="验证码">
-              <button class="" @click="login">获取验证码</button>
+              <button class="" @click="sendVerfyCode">获取验证码</button>
           </div>
           <button class="login-button" @click="login">登录</button>
       </div>
@@ -23,7 +23,7 @@
 </template>
 
 <script>
-import { requestLogin } from '@/api'
+import { requestLogin, sendVerfyCode } from '@/api'
 import { setToken } from '@/common/js/utils'
 import { mapActions } from "vuex"
 import { Toast } from 'mint-ui'
@@ -32,8 +32,11 @@ export default {
   data() {
     return {
       formData: {
-        phone: "",
-        verfyCode: "",
+        phone: '',
+        nickname: '',
+        areaCode: '', // 手机所属国家区号
+        verfyCode: '',
+        password: ''
       },
       bottomPopupVisible: false,
       slots: [
@@ -79,6 +82,22 @@ export default {
       }).catch(() => {
         this.$store.dispatch("setLoadingState", false)
       })
+    },
+    sendVerfyCode() {
+      if (this.isAjax) {
+        return
+      }
+      this.isAjax = true
+      // 发送短信验证码
+      sendVerfyCode(this.formData)
+        .then(res => {
+          this.$nextTick(() => {
+            this.isAjax = false
+          })
+        })
+        .catch(() => {
+          this.isAjax = false
+        })
     }
   }
 };
