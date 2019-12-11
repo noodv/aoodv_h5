@@ -4,7 +4,7 @@
       <div v-if="loginFlag">
         <img :src="user.src" alt="" class="avatar"/>
         <div class="description">
-          <p class="title">{{user.name}}</p>
+          <p class="title">{{user.username}}</p>
           <span class="ways">{{user.ways}}</span>
         </div>
       </div>
@@ -36,12 +36,11 @@
             <i slot="icon" class="icon iconfont icon-yuesel" ></i>
          </mt-cell>
       </li>
-      <!-- <li class="nav-item">
+      <li class="nav-item">
          <mt-cell title="我的订单" icon="more"  is-link>
            <i slot="icon" class="icon iconfont icon-dingdan" ></i>
          </mt-cell>
-
-      </li> -->
+      </li>
       <li class="nav-item">
           <mt-cell title="我的优惠券" icon="more"  is-link>
              <i slot="icon" class="icon iconfont icon-youhuiquan" ></i>
@@ -63,9 +62,7 @@
          <mt-cell title="设置" icon="more" is-link>
            <i slot="icon" class="icon iconfont icon-shezhi" ></i>
            <mt-badge size="small" v-if="user.setting">{{user.setting.badge}}</mt-badge>
-          
          </mt-cell>
-        
       </li>
     </ul>
     <ul class="nav">
@@ -91,25 +88,26 @@
 
 <script>
 import { mapGetters, mapState } from 'vuex'
+
 export default {
   computed:{
-    ...mapGetters({       
-      user: 'getUserData'
-    }),
+    // ...mapGetters({       
+    //   user: 'getUserData'
+    // }),
     ...mapState({
       loginFlag: state => state.user.loginFlag
     })
   },
   data(){
     return{
-      // user: {
-        // src: 'http://img1.imgtn.bdimg.com/it/u=3198762613,766144830&fm=27&gp=0.jpg',
-        // username: 'dmy123456789',
-        // ways: '通过qq登录',
-        // setting: {
-        //   badge: 2,
-        // }
-      // }
+      user: {
+        src: 'http://img1.imgtn.bdimg.com/it/u=3198762613,766144830&fm=27&gp=0.jpg',
+        username: 'dmy123456789',
+        ways: '通过qq登录',
+        setting: {
+          badge: 2,
+        }
+      }
     }
   },
   methods:{
@@ -120,8 +118,8 @@ export default {
         this.$router.push('/account/login');
       }
     },
-    changeToLogin() {            //跳转到登录界面
-      this.$router.push('/account/login')
+    changeToLogin(){            //跳转到登录界面
+      this.$router.push('/account/login');
     }
   }
 }
