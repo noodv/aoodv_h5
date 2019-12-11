@@ -192,3 +192,20 @@ export function sendVerfyCode(data) {
     data
   })
 }
+
+// 如果选有多个文件，则该方法会被调用多次
+export function uploadImg(url, file) {
+  var fromData = new FormData()
+  fromData.append("file", file)
+  var oAjax = new XMLHttpRequest()
+  oAjax.open('post', `${base}` + url, true);
+  oAjax.send(fromData);
+  oAjax.onreadystatechange = function() {
+    if (oAjax.readyState == 4) {
+      if (oAjax.status >= 200 && oAjax.status < 300 || oAjax.status == 304) {
+        return JSON.parse(oAjax.response).obj
+      }
+    }
+  }
+  return false
+}

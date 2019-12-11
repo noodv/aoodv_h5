@@ -41,7 +41,7 @@
 
 <script>
 import { Indicator } from 'mint-ui'
-import { saveTopic, findTechTypeList } from '@/api'
+import { saveTopic, findTechTypeList, uploadImg } from '@/api'
 
 export default {
     data() {
@@ -80,8 +80,7 @@ export default {
         let inputDOM = this.$refs.upload;
         // 通过DOM取文件数据
         this.fil = inputDOM.files
-        let oldLen=this.imgLen;
-        let len=this.fil.length+oldLen;
+        let len = this.fil.length
         if(len>4){
           alert('最多可上传4张，您还可以上传'+(4-oldLen)+'张');
           return false;
@@ -89,12 +88,11 @@ export default {
         for (let i=0; i < this.fil.length; i++) {
           let size = Math.floor(this.fil[i].size / 1024);
           if (size > 5*1024*1024) {
-            alert('请选择5M以内的图片！');
+            alert('请选择5M以内的图片！')
             return false
           }
-          this.imgLen++
-          console.log('aaaaaaaaaaaaaaaaaaaaaaaaaa', this.fil[i])
-          // this.$set(this.imgs,this.fil[i].name+'?'+new Date().getTime()+i,this.fil[i]);
+          var imgurl = uploadImg('/blogpost/UploadFile' ,this.fil[i])
+          this.$refs.content.innerHTML = this.$refs.content.innerHTML + `<img src="${imgurl}">`
         }
       },
       changeType(picker, values) {
