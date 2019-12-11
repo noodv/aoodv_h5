@@ -11,7 +11,7 @@
     <div class="title">
       <span class="title">内容</span>
     </div>
-    <div :v-model="formData.topicContent" placeholder='请输入' class="" style="width: 100%;height: 200px;" contentEditable='true'>
+    <div ref="content" placeholder='请输入' class="content" contentEditable='true' v-html="formData.topicContent">
     </div>
     <div class="ebox imagebox" style="display:block;">
       <ul id="imglist2" class="bg-f  p5">
@@ -50,7 +50,7 @@ export default {
         bottomPopupVisible: false,
         formData: {
           topicTitle: '',
-          topicContent: '',
+          topicContent: '<h2>aaaaaaaaaa</h2>',
           typeId: '',
           typeName: ''
         },
@@ -111,6 +111,7 @@ export default {
         this.$router.push({path: '/'})
       },
       saveTopic() {
+        this.formData.topicContent = this.$refs.content.innerHTML
         if (this.isAjax) {
           return
         }
@@ -147,6 +148,12 @@ body, ul, ol, li, dl, dd, p, h1, h2, h3, h4, h5, h6, form, fieldset, .pr, .pc {
   font-size: 0.43rem;
   position: absolute;
   left: 3%;
+}
+.content {
+  width: 100%;
+  height: 200px;
+  padding: 5px 5px;
+  font-size: 15px;
 }
 .sharePopup {
   width: 100%
