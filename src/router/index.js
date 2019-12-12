@@ -34,7 +34,7 @@ export default new Router({
       // ]
     },
     {
-      path: '/home/askview',
+      path: '/askview',
       name: 'askview',
       component: resolve => require(['@/views/ask/components/askview'], resolve),
     },

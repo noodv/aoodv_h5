@@ -1,13 +1,13 @@
 <template>
   <div>
-    <mt-header title="奎松省8人在警车内吸大麻被捕">
+    <mt-header :title="askObj.subject">
       <router-link to="" @click.native="back" slot="left">
         <mt-button class="back-button">返回</mt-button>
       </router-link>
       <!-- <mt-button icon="more" slot="right" @click="bottomPopupVisible=true"></mt-button> -->
     </mt-header>
     <div class="bg-f heads bbw1 p10">
-      <h3 style="font-size:18px;">奎松省8人在警车内吸大麻被捕</h3>
+      <h3 style="font-size:18px;">{{ askObj.subject }}</h3>
       <dl class="itemlist">
         <p class="z desc" style="margin-top:5px;line-height: 16px;">
           <span>查看210</span> &nbsp;
@@ -35,32 +35,7 @@
       </div>
       <div id="main3x" class="area"></div>
       <div class="display">
-        <div class="message">
-          <br />
-          <br />
-          <div align="center">
-            <a
-              href="forum.php?mod=viewthread&amp;tid=885398&amp;aid=1350892&amp;from=album&amp;page=1&amp;mobile=2"
-              class="orange"
-            >
-              <img
-                id="aimg_1350892"
-                src="@/assets/cat.jpg"
-                alt="D2-Mahindra201511102.jpg"
-                title="D2-Mahindra201511102.jpg"
-              />
-            </a>
-          </div>
-          <br />
-          <br />【菲龙网专讯】奎松省（Quezon）警方表示，当局周一（9日）清晨在Tayabas市的一辆警车内发现8人正在吸食大麻，于是逮捕了18岁的农民及其他7名未成年。
-          <br />
-          <br />奎松省警方表示，德拉佩尼亚（Jovert de la Peña）和其他7名未成年当时在停放在汽车修理厂的Mahindra警车内吸食干大麻叶。
-          <br />
-          <br />警方从犯罪嫌疑人手中查获一根小玻璃管，里面装有2.45克大麻叶，香烟纸和吸大麻用具。
-          <br />
-          <br />据报道，当局在接到附近民众报案后立即前往现场查证。
-          <br />
-          <br />
+        <div class="message" v-html="askObj.message">
         </div>
       </div>
       <div id="main2x" class="area"></div>
@@ -81,11 +56,14 @@
 
 <script>
 import { Indicator } from 'mint-ui'
+import { findForumPost } from '@/api'
+
 
 export default {
   data () {
     return {
       bottomPopupVisible: false,
+      askObj: {},
       formData: {
         username: '',
         typeId: '',
@@ -101,7 +79,16 @@ export default {
       ]
     }
   },
+  created() {
+    this.load()
+  },
   methods: {
+    load() {
+      let id = this.$route.query.id
+      findForumPost({pid: id}).then(res => {
+        this.askObj = res.obj
+      })
+    },
     changeType () {
     },
     back() {
