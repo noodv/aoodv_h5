@@ -5,7 +5,7 @@
     </div>
     <div class="courses">
       <ul>
-        <li v-for="(item, i) in topicList" :key="i" class="course" @click="onToDetail(item)">
+        <li v-for="(item, i) in topicList" :key="i" class="course" @click="onToDetail(item.topicId)">
           <div v-if="item.firstImage" class="course-image">
             <img :src="item.firstImage" alt="">
           </div>
@@ -55,8 +55,8 @@ export default {
     })
   },
   methods:{
-    onToDetail(course){
-      this.$router.push({path:"/topicview" , query:{id:course.id}})
+    onToDetail(id) {
+      this.$router.push({path:"/topicview" , query:{id: id}})
     }
   }
 }

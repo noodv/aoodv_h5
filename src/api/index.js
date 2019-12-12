@@ -163,6 +163,13 @@ export const findTopicList = params => {
     })
 }
 
+// 查询单条话题
+export const findTopic = params => {
+  return axios.post(`${base}/topic/findTopic`, params).then(res => {
+      return res.data
+  })
+}
+
 // 添加话题
 export function saveTopic(data) {
   return request({
