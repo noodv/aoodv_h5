@@ -5,17 +5,17 @@
         <i slot="icon" class="icon iconfont icon-shouye" :style="maincolor"></i>
         首页
       </mt-tab-item>
-      <mt-tab-item id="分类" class="tabbar-item" @click.native="changeToClass">
+      <!-- <mt-tab-item id="分类" class="tabbar-item" @click.native="changeToClass">
         <i slot="icon" class="icon iconfont icon-leimupinleifenleileibie2" :style="classifycolor"></i>
         分类
-      </mt-tab-item>
+      </mt-tab-item> -->
       <mt-tab-item class="tabbar-item" @click.native="showCard">
         <i class="iconfont icon-tableedit fs-35"></i>
       </mt-tab-item>
-      <mt-tab-item id="我的学习" class="tabbar-item" @click.native="changeToLearn">
+      <!-- <mt-tab-item id="我的学习" class="tabbar-item" @click.native="changeToLearn">
         <i slot="icon" class="icon iconfont icon-icon" :style="learncolor"></i>
         我的学习
-      </mt-tab-item>
+      </mt-tab-item> -->
       <mt-tab-item id="账号" class="tabbar-item" @click.native="changeToMy">
         <i slot="icon" class="icon iconfont icon-icon_account" :style="mycolor"></i>
         账号
