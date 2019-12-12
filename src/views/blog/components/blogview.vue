@@ -1,13 +1,13 @@
 <template>
   <div>
-    <mt-header title="奎松省8人在警车内吸大麻被捕">
+    <mt-header :title="blogObj.subject">
       <router-link to="/" slot="left">
         <mt-button class="back-button" @click="back">返回</mt-button>
       </router-link>
       <!-- <mt-button icon="more" slot="right" @click="bottomPopupVisible=true"></mt-button> -->
     </mt-header>
     <div class="bg-f heads bbw1 p10">
-      <h3 style="font-size:18px;">奎松省8人在警车内吸大麻被捕</h3>
+      <h3 style="font-size:18px;">{{ blogObj.subject }}</h3>
       <dl class="itemlist">
         <p class="z desc" style="margin-top:5px;line-height: 16px;">
           <span>查看210</span> &nbsp;
@@ -23,7 +23,7 @@
             <img src="http://www.flw.ph/uc_server/avatar.php?uid=53889&amp;size=big" />
           </span>
           <p class="title">
-            菲龙网新闻部3
+            {{ blogObj.author }}
             <span class="level">Lv.9</span>
           </p>
           <p class="time">2019-12-9 15:35</p>
@@ -35,32 +35,7 @@
       </div>
       <div id="main3x" class="area"></div>
       <div class="display">
-        <div class="message">
-          <br />
-          <br />
-          <div align="center">
-            <a
-              href="forum.php?mod=viewthread&amp;tid=885398&amp;aid=1350892&amp;from=album&amp;page=1&amp;mobile=2"
-              class="orange"
-            >
-              <img
-                id="aimg_1350892"
-                src="@/assets/cat.jpg"
-                alt="D2-Mahindra201511102.jpg"
-                title="D2-Mahindra201511102.jpg"
-              />
-            </a>
-          </div>
-          <br />
-          <br />【菲龙网专讯】奎松省（Quezon）警方表示，当局周一（9日）清晨在Tayabas市的一辆警车内发现8人正在吸食大麻，于是逮捕了18岁的农民及其他7名未成年。
-          <br />
-          <br />奎松省警方表示，德拉佩尼亚（Jovert de la Peña）和其他7名未成年当时在停放在汽车修理厂的Mahindra警车内吸食干大麻叶。
-          <br />
-          <br />警方从犯罪嫌疑人手中查获一根小玻璃管，里面装有2.45克大麻叶，香烟纸和吸大麻用具。
-          <br />
-          <br />据报道，当局在接到附近民众报案后立即前往现场查证。
-          <br />
-          <br />
+        <div class="message" v-html="blogObj.message">
         </div>
       </div>
       <div id="main2x" class="area"></div>
@@ -81,11 +56,13 @@
 
 <script>
 import { Indicator } from 'mint-ui'
+import { findBlogPost } from '@/api'
 
 export default {
   data () {
     return {
       bottomPopupVisible: false,
+      blogObj: {},
       formData: {
         username: '',
         typeId: '',
@@ -101,7 +78,16 @@ export default {
       ]
     }
   },
+  created() {
+    this.load()
+  },
   methods: {
+    load() {
+      let id = this.$route.query.id
+      findBlogPost({pid: id}).then(res => {
+        this.blogObj = res.obj
+      })
+    },
     changeType () {
     }
   }

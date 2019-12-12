@@ -113,7 +113,7 @@ export default {
       changeType(picker, values) {
         if (values[0] != undefined) {
           this.formData.typeName = values[0].name
-          this.formData.typeId = values[0].value
+          this.formData.fid = values[0].value
           this.bottomPopupVisible = false
         }
       },
@@ -131,7 +131,7 @@ export default {
         this.formData.message = this.$refs.content.innerHTML
         saveBlogPost(this.formData).then(res => {
           this.isAjax = false
-          this.$router.push({path: '/topicview'})
+          this.$router.push({path: '/blogview', query: {id: res.obj}})
         }).catch(() => {
           this.isAjax = false
         })

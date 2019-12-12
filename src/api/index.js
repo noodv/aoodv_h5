@@ -108,6 +108,14 @@ export const getBlogThread = params => {
         reject(error)
     });
 }
+// 查询单条博客
+export function findBlogPost(data) {
+  return request({
+      url: `${base}/blogpost/findBlogPost`,
+      method: 'post',
+      data
+  })
+}
 // 添加博客
 export function saveBlogPost(data) {
   return request({
@@ -145,6 +153,15 @@ export const findAppForumPostList = params => {
     return axios.post(`${base}/forumpost/findAppForumPostList`, params).then(res => {
         return res.data
     })
+}
+
+// 查询单条问答
+export function findForumPost(data) {
+  return request({
+    url: `${base}/forumpost/findForumPost`,
+    method: 'post',
+    data
+  })
 }
 
 // 新增问答

@@ -131,7 +131,7 @@ export default {
         this.isAjax = false
         saveTopic(this.formData).then(res => {
           this.isAjax = false
-          this.$router.push({path: '/topicview'})
+          this.$router.push({path: '/topicview', query: {id: res.obj}})
         }).catch(() => {
           this.isAjax = false
         })
