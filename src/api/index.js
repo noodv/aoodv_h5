@@ -2,8 +2,8 @@ import axios from 'axios'
 import request from '@/common/js/request'
 import {} from '@/common/js/utils'
 
-let base = 'http://47.75.158.224/api'  // 因为要经过nginx转发，所以添加api
-// let base = 'http://localhost:8081/bbs'
+// let base = 'http://47.75.158.224/api'  // 因为要经过nginx转发，所以添加api
+let base = 'http://localhost:8081/bbs'
 
 export function getBaseUrl() {
   return `${base}`
