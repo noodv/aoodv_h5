@@ -13,7 +13,7 @@
             <span class="course-title">{{item.simplTitle}}</span>
             <star :size="24" :score="item.title" class="star"></star>
             <span class="starlevel">{{item.title}}</span>
-            <span class="learnnumber">{{item.title}}人学过</span>
+            <span class="learnnumber">{{item.title}}人学过a</span>
             <span class="mainmessage">{{ item.topicLitterContent }}</span>
           </div>
         </li>
