@@ -50,14 +50,40 @@ export default {
     star
   },
   created() {
-    findTopicList(this.formData).then(res => {
-      this.topicList = res.rows
-    })
   },
   methods:{
     onToDetail(id) {
       this.$router.push({path:"/topicview" , query:{id: id}})
+    },
+    findTopicList() {
+      findTopicList(this.formData).then(res => {
+        this.topicList = res.rows
+      })
+    },
+    scroll(list) {
+      let isLoading = false
+      window.onscroll = () => {
+        // 距离底部200px时加载一次
+        let bottomOfWindow = document.documentElement.offsetHeight - document.documentElement.scrollTop - window.innerHeight <= -1600
+        if (bottomOfWindow && isLoading == false) {
+          isLoading = true
+          findTopicList(this.formData).then(res => {
+            res.rows.forEach((item) => {
+              list.push(item)
+            })
+            isLoading = false
+            console.log('aaaaaaaaaaaaaa', list)
+          })
+        }
+      }
     }
+  },
+  beforeMount() {
+    // 在页面挂载前就发起请求
+    this.findTopicList()
+  },
+  mounted() {
+    this.scroll(this.topicList)
   }
 }
 </script>
