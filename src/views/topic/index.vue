@@ -57,7 +57,10 @@ export default {
     },
     findTopicList() {
       findTopicList(this.formData).then(res => {
-        this.topicList = res.rows
+        // this.topicList = res.rows
+        res.rows.forEach((item) => {
+          this.topicList.push(item)
+        })
       })
     },
     scroll(list) {
