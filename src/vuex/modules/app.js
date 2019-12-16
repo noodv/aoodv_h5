@@ -30,7 +30,15 @@ const actions = {
   },
   findTopicList({ commit }, data) {
     return request({
-      url: `${base}/topic/findTopicList`,
+      url: `${base}/topicapp/findTopicList`,
+      method: 'post',
+      data
+    })
+  },
+  // 查询话题滚动加载的几条数据
+  findNexts({ commit }, data) {
+    return request({
+      url: `${base}/topicapp/findNexts`,
       method: 'post',
       data
     })
