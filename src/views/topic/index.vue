@@ -23,9 +23,19 @@
 </template>
 
 <script>
+import { mapGetters, mapState } from 'vuex'
 import star from '@/components/star/star'
 import { findTopicList } from '@/api'
 export default {
+  components:{
+    star
+  },
+  computed:{
+    // ...mapGetters({       
+    //   user: 'getUserData'
+    // }),
+    ...mapState(['app'])
+  },
   data() {
     return {
       topicList: [],
@@ -45,8 +55,8 @@ export default {
       }
     }
   },
-  components:{
-    star
+  mounted() {
+    this.scroll(this.topicList)
   },
   methods:{
     onToDetail(id) {
@@ -62,6 +72,7 @@ export default {
     scroll(list) {
       let isLoading = false
       window.onscroll = () => {
+        if (this.app.selectedModel !== '2') return
         // 距离底部200px时加载一次
         // let bottomOfWindow = document.documentElement.offsetHeight - document.documentElement.scrollTop - window.innerHeight <= -1600
         let bottomOfWindow = (window.innerHeight + document.documentElement.scrollTop) > (document.documentElement.scrollHeight - 500)
@@ -82,9 +93,6 @@ export default {
   beforeMount() {
     // 在页面挂载前就发起请求
     this.findTopicList()
-  },
-  mounted() {
-    this.scroll(this.topicList)
   }
 }
 </script>

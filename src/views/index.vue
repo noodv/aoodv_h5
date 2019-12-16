@@ -2,7 +2,7 @@
   <div class="wrapper">
     <menusearch :isSearching="false" @showmenu="leftPopupVisible=true" @click.native="changeToSearch"></menusearch>
     <div class="tab">
-      <mt-navbar v-model="selected">
+      <mt-navbar v-model="app.selectedModel">
         <mt-tab-item id="1">首页</mt-tab-item>
         <mt-tab-item id="2">话题</mt-tab-item>
         <mt-tab-item id="3">问答</mt-tab-item>
@@ -12,7 +12,7 @@
         <!-- <mt-tab-item id="7">房屋</mt-tab-item> -->
       </mt-navbar>
     </div>
-    <mt-tab-container v-model="selected" swipeable>
+    <mt-tab-container v-model="app.selectedModel" swipeable>
       <mt-tab-container-item id="1">
         <home />
       </mt-tab-container-item>
@@ -44,6 +44,7 @@
 </template>
 
 <script>
+import { mapGetters, mapState } from 'vuex'
 import food from "@/views/web/food";
 import expert from "@/views/web/expert";
 import major from "@/views/web/major"
@@ -66,9 +67,14 @@ export default {
     ask,
     blog
   },
+  computed:{
+    // ...mapGetters({       
+    //   user: 'getUserData'
+    // }),
+    ...mapState(['app'])
+  },
   data() {
     return{
-      selected: "1",
       leftPopupVisible: false,
       techTypeList: [],
       formData: {

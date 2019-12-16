@@ -8,11 +8,7 @@ let base = 'http://localhost:8081/bbs'
  * App通用配置
  */
 const state = {
-    loading: false,         //暂时只开发这一个 
-    showToast: false,
-    leftNavStatus: false,
-    showSuccess: true,
-	showFail: false,
+  selectedModel: '1' 
 }
 const getters = {
     loading: state => state.loading,
