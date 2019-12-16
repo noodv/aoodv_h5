@@ -29,6 +29,13 @@ import { findAppBlogPostList } from '@/api'
 import axios from 'axios'
 
 export default {
+  components:{
+    star
+  },
+  mounted(){
+    this.load()
+    this.scroll(this.blogPostList)
+  },
   data(){
     return{
       blogPostList: [],
@@ -48,19 +55,15 @@ export default {
       }
     }
   },
-  components:{
-    star
-  },
-  mounted(){
-    this.load()
-  },
   created() {
   },
   methods:{
     load() {
       Indicator.open()
       findAppBlogPostList(this.formData).then(res => {
-        this.blogPostList = res.rows
+        res.rows.forEach((item) => {
+          this.blogPostList.push(item)
+        })
         this.$nextTick(() => {
           Indicator.close()
         })

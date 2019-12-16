@@ -31,6 +31,13 @@ import star from '@/components/star/star'
 import { findAppBlogPostList } from '@/api'
 
 export default {
+  components:{
+    star,
+  },
+  mounted(){
+    this.load()
+    this.scroll(this.blogPostList)
+  },
   data() {
     return{
       blogPostList: {},
@@ -57,17 +64,11 @@ export default {
       ]
     }
   },
-  components:{
-    star,
-  },
   methods: {
     changeToCoursedetails(course){
       this.$router.push({path:"/home/coursedetails" , query:{id:course.id}})
       // this.$router.push({name:"Coursedetails" , params:{id:course.id}})
     },
-  },
-  mounted(){
-    this.load()
   },
   created() {
   },
@@ -75,7 +76,9 @@ export default {
     load() {
       Indicator.open()
       findAppBlogPostList(this.formData).then(res => {
-        this.blogPostList = res.rows
+        res.rows.forEach((item) => {
+          this.blogPostList.push(item)
+        })
         this.$nextTick(() => {
           Indicator.close()
         })

@@ -18,7 +18,18 @@
 import star from '@/components/star/star'
 import { findAppForumPostList } from '@/api'
 export default {
-  data(){
+  components:{
+    star
+  },
+  mounted(){
+    findAppForumPostList(this.formData).then(res => {
+      res.rows.forEach((item) => {
+        this.forumPostList.push(item)
+      })
+    }),
+    this.scroll(this.forumPostList)
+  },
+  data() {
     return{
         forumPostList:[],
         total: 0,
@@ -27,14 +38,6 @@ export default {
           pageSize: 15,
         }
     }
-  },
-  components:{
-    star
-  },
-  mounted(){
-    findAppForumPostList(this.formData).then(res => {
-      this.forumPostList = res.rows
-    })
   },
   methods:{
     onToDetail(course){
