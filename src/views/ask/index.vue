@@ -42,6 +42,26 @@ export default {
   methods:{
     onToDetail(course){
       this.$router.push({path:"/blogview" , query:{id:course.id}})
+    },
+    scroll(list) {
+      let isLoading = false
+      window.onscroll = () => {
+        if (this.app.selectedModel !== '2') return
+        // 距离底部200px时加载一次
+        // let bottomOfWindow = document.documentElement.offsetHeight - document.documentElement.scrollTop - window.innerHeight <= -1600
+        let bottomOfWindow = (window.innerHeight + document.documentElement.scrollTop) > (document.documentElement.scrollHeight - 500)
+        if (bottomOfWindow && isLoading == false) {
+          isLoading = true
+          this.formData.pageSize = 5
+          this.formData.dataLength = list.length
+          this.$store.dispatch("findNexts", this.formData).then(res => {
+            res.obj.forEach((item) => {
+              list.push(item)
+            })
+            isLoading = false
+          })
+        }
+      }
     }
   }
 }
