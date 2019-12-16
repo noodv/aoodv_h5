@@ -25,7 +25,6 @@
 <script>
 import star from '@/components/star/star'
 import { findTopicList } from '@/api'
-import axios from 'axios'
 export default {
   data() {
     return {
@@ -49,15 +48,12 @@ export default {
   components:{
     star
   },
-  created() {
-  },
   methods:{
     onToDetail(id) {
       this.$router.push({path:"/topicview" , query:{id: id}})
     },
     findTopicList() {
-      findTopicList(this.formData).then(res => {
-        // this.topicList = res.rows
+      this.$store.dispatch("findTopicList", this.formData).then(res => {
         res.rows.forEach((item) => {
           this.topicList.push(item)
         })
@@ -70,13 +66,13 @@ export default {
         let bottomOfWindow = document.documentElement.offsetHeight - document.documentElement.scrollTop - window.innerHeight <= -1600
         if (bottomOfWindow && isLoading == false) {
           isLoading = true
-          findTopicList(this.formData).then(res => {
-            res.rows.forEach((item) => {
-              list.push(item)
-            })
-            isLoading = false
-            console.log('aaaaaaaaaaaaaa', list)
-          })
+          // findTopicList(this.formData).then(res => {
+          //   res.rows.forEach((item) => {
+          //     list.push(item)
+          //   })
+          //   isLoading = false
+          //   console.log('aaaaaaaaaaaaaa', list)
+          // })
         }
       }
     }
