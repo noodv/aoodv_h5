@@ -15,19 +15,24 @@
 </template>
 
 <script>
+import { mapGetters, mapState } from 'vuex'
 import star from '@/components/star/star'
 import { findAppForumPostList } from '@/api'
+
 export default {
   components:{
     star
+  },
+  computed:{
+    ...mapState(['app'])
   },
   mounted(){
     findAppForumPostList(this.formData).then(res => {
       res.rows.forEach((item) => {
         this.forumPostList.push(item)
       })
-    }),
-    this.scroll(this.forumPostList)
+    })
+    this.load()
   },
   data() {
     return{
@@ -40,13 +45,16 @@ export default {
     }
   },
   methods:{
+    load() {
+      this.scroll(this.forumPostList)
+    },
     onToDetail(course){
       this.$router.push({path:"/blogview" , query:{id:course.id}})
     },
     scroll(list) {
       let isLoading = false
       window.onscroll = () => {
-        if (this.app.selectedModel !== '2') return
+        if (this.app.selectedModel !== '3') return
         // 距离底部200px时加载一次
         // let bottomOfWindow = document.documentElement.offsetHeight - document.documentElement.scrollTop - window.innerHeight <= -1600
         let bottomOfWindow = (window.innerHeight + document.documentElement.scrollTop) > (document.documentElement.scrollHeight - 500)
@@ -54,7 +62,10 @@ export default {
           isLoading = true
           this.formData.pageSize = 5
           this.formData.dataLength = list.length
-          this.$store.dispatch("findNexts", this.formData).then(res => {
+          this.$store.dispatch("findAskNexts", this.formData).then(res => {
+            if (res.obj == undefined) {
+              return
+            }
             res.obj.forEach((item) => {
               list.push(item)
             })

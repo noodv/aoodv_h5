@@ -3,11 +3,11 @@
     <menusearch :isSearching="false" @showmenu="leftPopupVisible=true" @click.native="changeToSearch"></menusearch>
     <div class="tab">
       <mt-navbar v-model="app.selectedModel">
-        <mt-tab-item id="1">首页</mt-tab-item>
-        <mt-tab-item id="2">话题</mt-tab-item>
-        <mt-tab-item id="3">问答</mt-tab-item>
-        <mt-tab-item id="4">博客</mt-tab-item>
-        <mt-tab-item id="5">美食</mt-tab-item>
+        <mt-tab-item id="1" @click.native="test">首页</mt-tab-item>
+        <mt-tab-item id="2" @click.native="test">话题</mt-tab-item>
+        <mt-tab-item id="3" @click.native="test">问答</mt-tab-item>
+        <mt-tab-item id="4" @click.native="test">博客</mt-tab-item>
+        <mt-tab-item id="5" @click.native="test">美食</mt-tab-item>
         <!-- <mt-tab-item id="6">aaa</mt-tab-item> -->
         <!-- <mt-tab-item id="7">房屋</mt-tab-item> -->
       </mt-navbar>
@@ -17,16 +17,16 @@
         <home />
       </mt-tab-container-item>
       <mt-tab-container-item id="2">
-        <topic/>
+        <topic ref="topic"/>
       </mt-tab-container-item>
       <mt-tab-container-item id="3">
-        <ask/>
+        <ask ref="ask"/>
       </mt-tab-container-item>
       <mt-tab-container-item id="4">
-        <blog/>
+        <blog ref="blog"/>
       </mt-tab-container-item>
       <mt-tab-container-item id="5">
-        <food/>
+        <food ref="food"/>
       </mt-tab-container-item>
       <!-- <mt-tab-container-item id="6">
         <expert/>
@@ -110,6 +110,14 @@ export default {
     },
     changeToSearch(){
       // this.$router.push({path:'home/search'});
+    },
+    test() {
+      console.log(this.app.selectedModel)
+      if(this.app.selectedModel == 2){
+        this.$refs.topic.load()
+      } else if(this.app.selectedModel == 3) {
+        this.$refs.ask.load()
+      }
     }
   }
 };

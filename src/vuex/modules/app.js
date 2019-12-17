@@ -24,6 +24,7 @@ const actions = {
   setLoadingState({ commit }, status) {
       commit(types.COM_LOADING_STATUS, status)
   },
+  // 查询话题列表
   findTopicList({ commit }, data) {
     return request({
       url: `${base}/topicapp/findTopicList`,
@@ -35,6 +36,22 @@ const actions = {
   findNexts({ commit }, data) {
     return request({
       url: `${base}/topicapp/findNexts`,
+      method: 'post',
+      data
+    })
+  },
+  // 查询问答下向滚动
+  findAskNexts({ commit }, data) {
+    return request({
+      url: `${base}/forumpost/findAskNexts`,
+      method: 'post',
+      data
+    })
+  },
+  // 查询博客向下滚动
+  findBlogNexts({ commit }, data) {
+    return request({
+      url: `${base}/blogpost/findBlogNexts`,
       method: 'post',
       data
     })

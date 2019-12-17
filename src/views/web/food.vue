@@ -26,6 +26,7 @@
 </template>
 
 <script>
+import { mapGetters, mapState } from 'vuex'
 import { Indicator } from 'mint-ui'
 import star from '@/components/star/star'
 import { findAppBlogPostList } from '@/api'
@@ -34,9 +35,15 @@ export default {
   components:{
     star,
   },
+  computed:{
+    // ...mapGetters({       
+    //   user: 'getUserData'
+    // }),
+    ...mapState(['app'])
+  },
   mounted(){
     this.load()
-    this.scroll(this.blogPostList)
+    // this.scroll(this.blogPostList)
   },
   data() {
     return{
@@ -92,7 +99,7 @@ export default {
     scroll(list) {
       let isLoading = false
       window.onscroll = () => {
-        if (this.app.selectedModel !== '2') return
+        if (this.app.selectedModel !== '5') return
         // 距离底部200px时加载一次
         // let bottomOfWindow = document.documentElement.offsetHeight - document.documentElement.scrollTop - window.innerHeight <= -1600
         let bottomOfWindow = (window.innerHeight + document.documentElement.scrollTop) > (document.documentElement.scrollHeight - 500)

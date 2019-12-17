@@ -56,9 +56,12 @@ export default {
     }
   },
   mounted() {
-    this.scroll(this.topicList)
+    this.load()
   },
   methods:{
+    load() {
+      this.scroll(this.topicList)
+    },
     onToDetail(id) {
       this.$router.push({path:"/topicview" , query:{id: id}})
     },
@@ -81,11 +84,14 @@ export default {
           this.formData.pageSize = 5
           this.formData.dataLength = list.length
           this.$store.dispatch("findNexts", this.formData).then(res => {
+            if (res.obj == undefined) {
+              return
+            }
             res.obj.forEach((item) => {
               list.push(item)
             })
-            isLoading = false
           })
+          isLoading = false
         }
       }
     }
