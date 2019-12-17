@@ -117,6 +117,8 @@ export default {
         this.$refs.topic.load()
       } else if(this.app.selectedModel == 3) {
         this.$refs.ask.load()
+      } else if(this.app.selectedModel == 4) {
+        this.$refs.blog.load()
       }
     }
   }

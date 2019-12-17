@@ -91,7 +91,6 @@ export default {
           this.formData.pageSize = 5
           this.formData.dataLength = list.length
           this.$store.dispatch("findBlogNexts", this.formData).then(res => {
-            console.log('aaaaaaa', list.length)
             if (res.obj == undefined) {
               return
             }

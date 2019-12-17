@@ -43,11 +43,10 @@ export default {
   },
   mounted(){
     this.load()
-    // this.scroll(this.blogPostList)
   },
   data() {
     return{
-      blogPostList: {},
+      blogPostList: [],
       formData: {
         value1: '',
         value2: '',
@@ -83,6 +82,7 @@ export default {
     load() {
       Indicator.open()
       findAppBlogPostList(this.formData).then(res => {
+        console.log('food', res)
         res.rows.forEach((item) => {
           this.blogPostList.push(item)
         })
@@ -92,6 +92,7 @@ export default {
       }).catch(() => {
         Indicator.close()
       })
+      this.scroll(this.blogPostList)
     },
     changeToCoursedetails(course) {
       this.$router.push({path:"/home/coursedetails" , query:{id:course.id}})
