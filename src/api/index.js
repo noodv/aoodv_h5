@@ -137,17 +137,6 @@ export const getBlogView = params => {
     });
 }
 
-// 查询首页面博客新闻
-export const findAppBlogPostList = params => {
-    return axios.post(`${base}/blogpost/findAppBlogPostList`, params).then(res => {
-        return res.data
-    }, err => {
-        reject(err);
-    }).catch((error) => {
-        reject(error)
-    })
-}
-
 // 查询问答
 export const findAppForumPostList = params => {
     return axios.post(`${base}/forumpost/findAppForumPostList`, params).then(res => {

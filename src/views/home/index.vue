@@ -27,7 +27,6 @@
 <script>
 import { Indicator } from 'mint-ui'
 import star from '@/components/star/star'
-import { findAppBlogPostList } from '@/api'
 import axios from 'axios'
 
 export default {
@@ -66,7 +65,7 @@ export default {
   methods:{
     load() {
       Indicator.open()
-      findAppBlogPostList(this.formData).then(res => {
+      this.$store.dispatch('app/findAppBlogPostList', this.formData).then(res => {
         this.blogPostList = res.rows
         this.$nextTick(() => {
           Indicator.close()

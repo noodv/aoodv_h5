@@ -2,7 +2,7 @@ import * as types from '../types'
 import request from '@/common/js/request'
 
 // let base = 'http://47.75.158.224/api'  // 因为要经过nginx转发，所以添加api
-let base = 'http://localhost:8081/bbs'
+let base = 'http://localhost:8000'
 
 /**
  * App通用配置
@@ -52,6 +52,14 @@ const actions = {
   findBlogNexts({ commit }, data) {
     return request({
       url: `${base}/blogpost/findBlogNexts`,
+      method: 'post',
+      data
+    })
+  },
+  // 查询首页面博客新闻
+  findAppBlogPostList({ commit }, data) {
+    return request({
+      url: `${base}/app/findBlogList`,
       method: 'post',
       data
     })

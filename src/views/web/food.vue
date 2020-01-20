@@ -29,7 +29,6 @@
 import { mapGetters, mapState } from 'vuex'
 import { Indicator } from 'mint-ui'
 import star from '@/components/star/star'
-import { findAppBlogPostList } from '@/api'
 
 export default {
   components:{
@@ -81,7 +80,7 @@ export default {
   methods:{
     load() {
       Indicator.open()
-      findAppBlogPostList(this.formData).then(res => {
+      this.$store.dispatch('app/findAppBlogPostList', this.formData).then(res => {
         console.log('food', res)
         res.rows.forEach((item) => {
           this.blogPostList.push(item)
