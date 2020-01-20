@@ -65,8 +65,9 @@ export default {
   methods:{
     load() {
       Indicator.open()
-      this.$store.dispatch('app/findAppBlogPostList', this.formData).then(res => {
-        this.blogPostList = res.rows
+      this.$store.dispatch('findAppBlogPostList', this.formData).then(res => {
+        this.blogPostList = res.data
+        console.log('aaaaaaasdf', this.blogPostList)
         this.$nextTick(() => {
           Indicator.close()
         })

@@ -80,9 +80,8 @@ export default {
   methods:{
     load() {
       Indicator.open()
-      this.$store.dispatch('app/findAppBlogPostList', this.formData).then(res => {
-        console.log('food', res)
-        res.rows.forEach((item) => {
+      this.$store.dispatch('findAppBlogPostList', this.formData).then(res => {
+        res.data.forEach((item) => {
           this.blogPostList.push(item)
         })
         this.$nextTick(() => {

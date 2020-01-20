@@ -137,13 +137,6 @@ export const getBlogView = params => {
     });
 }
 
-// 查询问答
-export const findAppForumPostList = params => {
-    return axios.post(`${base}/forumpost/findAppForumPostList`, params).then(res => {
-        return res.data
-    })
-}
-
 // 查询单条问答
 export function findForumPost(data) {
   return request({

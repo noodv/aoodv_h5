@@ -63,6 +63,14 @@ const actions = {
       method: 'post',
       data
     })
+  },
+  // 查询问答
+  findAppForumPostList({ commit }, data) {
+    return request({
+      url: `${base}/app/findAppForumPostList`,
+      method: 'post',
+      data
+    })
   }
 }
 
