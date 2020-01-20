@@ -67,7 +67,7 @@ export default {
     },
     findTopicList() {
       this.$store.dispatch("findTopicList", this.formData).then(res => {
-        res.rows.forEach((item) => {
+        res.data.forEach((item) => {
           this.topicList.push(item)
         })
       })
