@@ -155,13 +155,6 @@ export function addForumPost(data) {
   })
 }
 
-// 查询话题
-export const findTopicList = params => {
-    return axios.post(`${base}/topic/findTopicList`, params).then(res => {
-        return res.data
-    })
-}
-
 // 查询单条话题
 export const findTopic = params => {
   return axios.post(`${base}/topic/findTopic`, params).then(res => {
@@ -176,15 +169,6 @@ export function saveTopic(data) {
     method: 'post',
     data
   })
-}
-
-// 量询文章分类
-export function findTechTypeList(data) {
-    return request({
-        url: `${base}/techtype/findTechTypeList`,
-        method: 'post',
-        data
-    })
 }
 
 // 获取验证码

@@ -27,7 +27,7 @@ const actions = {
   // 查询话题列表
   findTopicList({ commit }, data) {
     return request({
-      url: `${base}/topicapp/findTopicList`,
+      url: `${base}/app/findTopicList`,
       method: 'post',
       data
     })
@@ -65,9 +65,17 @@ const actions = {
     })
   },
   // 查询问答
-  findAppForumPostList({ commit }, data) {
+  findAskList({ commit }, data) {
     return request({
-      url: `${base}/app/findAppForumPostList`,
+      url: `${base}/app/findAskList`,
+      method: 'post',
+      data
+    })
+  },
+  // 量询文章分类
+  findTechTypeList({ commit }, data) {
+    return request({
+      url: `${base}/app/findTechTypeList`,
       method: 'post',
       data
     })

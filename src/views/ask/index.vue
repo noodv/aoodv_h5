@@ -17,7 +17,6 @@
 <script>
 import { mapGetters, mapState } from 'vuex'
 import star from '@/components/star/star'
-import { findAppForumPostList } from '@/api'
 
 export default {
   components:{
@@ -27,7 +26,7 @@ export default {
     ...mapState(['app'])
   },
   mounted(){
-    findAppForumPostList(this.formData).then(res => {
+    this.$store.dispatch('findAskList', this.formData).then(res => {
       res.rows.forEach((item) => {
         this.forumPostList.push(item)
       })

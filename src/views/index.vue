@@ -54,7 +54,6 @@ import ask from "@/views/ask";
 import blog from "@/views/blog";
 import menusearch from "@/components/menusearch"
 import { Indicator } from 'mint-ui'
-import { findTechTypeList } from '@/api'
 
 export default {
   components: {
@@ -99,7 +98,7 @@ export default {
   methods: {
     load() {
       Indicator.open()
-      findTechTypeList(this.formData).then(res => {
+      this.$store.dispatch('findTechTypeList', this.formData).then(res => {
         this.techTypeList = res.rows
         this.$nextTick(() => {
           Indicator.close()

@@ -41,7 +41,7 @@
 
 <script>
 import { Indicator } from 'mint-ui'
-import { saveBlogPost, findTechTypeList, getBaseUrl } from '@/api'
+import { saveBlogPost, getBaseUrl } from '@/api'
 
 export default {
     data() {
@@ -69,7 +69,7 @@ export default {
     },
     methods: {
       load() {
-        findTechTypeList(this.formData).then(res => {
+        this.$store.dispatch('findTechTypeList', this.formData).then(res => {
           this.slots.values = []
           res.rows.forEach(item => {
             this.slots[0].values.push({name: item.name, value: item.fid})
