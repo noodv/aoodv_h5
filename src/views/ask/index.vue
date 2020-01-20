@@ -27,7 +27,7 @@ export default {
   },
   mounted(){
     this.$store.dispatch('findAskList', this.formData).then(res => {
-      res.rows.forEach((item) => {
+      res.data.forEach((item) => {
         this.forumPostList.push(item)
       })
     })
