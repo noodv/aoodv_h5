@@ -63,7 +63,7 @@ export default {
     load() {
       Indicator.open()
       this.$store.dispatch('findAppBlogPostList', this.formData).then(res => {
-        res.rows.forEach((item) => {
+        res.data.forEach((item) => {
           this.blogPostList.push(item)
         })
         this.$nextTick(() => {
